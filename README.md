@@ -1,7 +1,3 @@
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/alvarcarto/url-to-pdf-api)
-
-[![Build Status](https://travis-ci.org/alvarcarto/url-to-pdf-api.svg?branch=master)](https://travis-ci.org/alvarcarto/url-to-pdf-api)
-
 # URL to PDF Microservice
 
 > Web page PDF rendering done right. Microservice for rendering receipts, invoices, or any content. Packaged to an easy API.
@@ -38,6 +34,17 @@ content to a PDF. This API does just that.
 * [Examples](#examples)
 * [API](#api)
 * [I want to run this myself](#development)
+
+## Docker
+
+This fork was created to run inside docker *without disabling the chromium sandbox*. This can be achieved in different ways, the most granular one using a specific seccomp profile. The included profile is taken from [here](https://github.com/tkp1n/chromium-ci/blob/master/README.md).
+
+Build and run from the local source by running `docker-compose up -d`. If you prefer a prebuilt image run
+
+```sh
+docker run -it --rm -p 9000:9000 --env ALLOW_HTTP=true  --security-opt=seccomp:$(pwd)/chromium_seccomp.json  cdromulus/url-to-pdf-api:latest
+```
+
 
 ## How it works
 

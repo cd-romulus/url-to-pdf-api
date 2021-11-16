@@ -1,0 +1,14 @@
+version: "3.4"
+services:
+    url-to-pdf-api:
+        build: 
+            context: ./
+            dockerfile: Dockerfile
+            target: production
+        security_opt: 
+            - seccomp:./chromium_seccomp.json
+        environment: 
+            - NODE_ENV=production
+            - ALLOW_HTTP=true
+        ports:
+            - "9000:9000"
